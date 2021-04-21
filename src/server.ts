@@ -1,24 +1,12 @@
 import express from "express";
+import "reflect-metadata";
+import "./database";
+import {routes} from "./routes";
 
 const app = express();
 
-/**
- * GET=Buscar
- * POST=CRIAR
- * PUT=ALTERAR
- * DELETE=DELETAR
- * PATCH=ALTERAR INFO ESPEC
- * */
-app.get("/", (req, res) => {
-    return res.json({ 
-        message: "Olá nlw 05"
-    });
-});
+app.use(express.json());
 
-app.post("/", (req, res) => {
-    return res.json({ message: "Usuário salvo com sucesso!" });
-})
+app.use(routes);
 
-
-
-app.listen(3333, () => console.log("Server is runing on port 3333"));
+app.listen(3333, () => console.log("Server is running on port 3333"));
